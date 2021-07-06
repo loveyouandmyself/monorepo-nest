@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "commonjs", // 模块化标准
+    "declaration": true, // 编译每个ts文件之后会生成一个js文件和一个声明文件
+    "removeComments": true, // 将编译后的文件注释删掉
+    "emitDecoratorMetadata": true, // 为装上去提供元数据支持
+    "experimentalDecorators": true, // 启用实验性的装饰器特性
+    "allowSyntheticDefaultImports": true, // 允许从没有默认导出的模块中默认导入
+    "target": "es2017", // 编译之后的版本目录
+    "sourceMap": true, // 编译时生成.map文件
+    "outDir": "./dist", // 编译输出文件夹
+    "baseUrl": "./", // 设置解析非相对模块名称的基本目录
+    "incremental": true,
+    "suppressImplicitAnyIndexErrors": true, // 对缺少索引签名的索引对象报错
+    "noUnusedLocals": false,
+    "types": ["node", "jest"], // paths用于设置模块名到基于baseUrl的路径映射
+    "esModuleInterop": true, // 可以使用es6的方式导入node.js的方法
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+    "strict": true, // 所有的语法都会进行严格的检查
+    "resolveJsonModule": true, // 是否允许把json文件当做模块进行解析
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".eslintrc.js"
+  ],
+  "include": ["src/**/*"]
+}

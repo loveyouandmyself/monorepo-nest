@@ -1,0 +1,26 @@
+{
+  "name": "monorepo-interface",
+  "private": true,
+  "useWorkspaces": true,
+  "workspaces": [
+    "packages/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "build": "mono-run build --stream 500",
+    "dev": "mono-run start:dev --stream 500",
+    "prod": "mono-run start:prod --stream 500",
+    "lint": "mono-run lint --ui row",
+    "test": "mono-run test",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "fix": "lerna run fix",
+    "tsc-check": "yarn workspaces run tsc-check"
+  },
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "lerna": "^4.0.0",
+    "monorepo-run": "^0.4.2",
+    "typescript": "^4.3.5"
+  }
+}
