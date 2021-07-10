@@ -13,19 +13,25 @@
     "start:dev": "mono-run start:dev --stream 500",
     "pretest": "yarn build",
     "test": "jest --config=jest.json",
-    "commit": "git cz"
+    "commit": "git-cz"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@types/jest": "^26.0.24",
     "commitizen": "^4.2.4",
+    "cz-lerna-changelog": "^2.0.3",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "monorepo-run": "^0.4.2",
     "ts-jest": "^27.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-lerna-changelog"
+    }
   },
   "husky": {
     "hooks": {
@@ -42,6 +48,24 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ],
+    "rules": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "test"
+      ]
+    ],
+    "scope-enum": [
+      2,
+      "always",
+      [
+        "global"
+      ]
     ]
   }
 }
