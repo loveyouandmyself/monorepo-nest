@@ -1,26 +1,47 @@
 {
   "name": "monorepo-interface",
   "private": true,
+  "license": "UNLICENSED",
   "useWorkspaces": true,
   "workspaces": [
-    "packages/*",
-    "libs/*"
+    "packages/*"
   ],
+  "homepage": "",
   "scripts": {
-    "build": "mono-run build --stream 500",
-    "dev": "mono-run start:dev --stream 500",
-    "prod": "mono-run start:prod --stream 500",
-    "lint": "mono-run lint --ui row",
-    "test": "mono-run test",
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean",
-    "fix": "lerna run fix",
-    "tsc-check": "yarn workspaces run tsc-check"
+    "prebuild": "rimraf packages/*/{tsconfig.tsbuildinfo,lib,dist}",
+    "build": "tsc --build",
+    "start:dev": "mono-run start:dev --stream 500",
+    "pretest": "yarn build",
+    "test": "jest --config=jest.json",
+    "commit": "git cz"
   },
   "devDependencies": {
-    "husky": "^7.0.0",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@types/jest": "^26.0.24",
+    "commitizen": "^4.2.4",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
     "lerna": "^4.0.0",
+    "lint-staged": "^11.0.0",
     "monorepo-run": "^0.4.2",
-    "typescript": "^4.3.5"
+    "ts-jest": "^27.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS "
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx,jsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
