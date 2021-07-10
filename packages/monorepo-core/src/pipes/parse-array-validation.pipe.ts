@@ -1,5 +1,3 @@
-/* eslint-disable no-loop-func */
-/* eslint-disable no-restricted-syntax */
 import { Injectable, PipeTransform } from '@nestjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
@@ -19,9 +17,8 @@ export class ParseArrayValidationPipe<T> implements PipeTransform {
 
   async transform(value: T): Promise<any> {
     const responseErrors: { field: string; value: any; index: any; errors: any[]; }[] = [];
-    let index = 0;
     if (isArray(value)) {
-      for await (const valid of value) {
+      const promiseList = Array.from(value).map(async (valid, index) => {
         const object: any = plainToClass(this.type, valid);
         const errors = await validate(object);
   
@@ -35,8 +32,8 @@ export class ParseArrayValidationPipe<T> implements PipeTransform {
             });
           });
         }
-        index += 1;
-      }
+      });
+      await Promise.all(promiseList);
     }
     if (responseErrors.length > 0) {
       const errMsg = isProduction() ? 'Validation failed' : responseErrors;
