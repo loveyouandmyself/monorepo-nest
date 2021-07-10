@@ -3,10 +3,11 @@ import { AppModule } from './app.module';
 import pack from '../package.json';
 import { AllExceptionsFilter, getEnvVariable, Logger, TransformInterceptor, ValidationPipe } from '@monorepo-interface/core';
 
+Logger.init(pack.module);
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // 路由前缀
-  // app.setGlobalPrefix('api/orbit'); 
+  // app.setGlobalPrefix('api/auth'); 
 
   // 全局注册错误的过滤器
   app.useGlobalFilters(new AllExceptionsFilter());
@@ -18,6 +19,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(getEnvVariable('PORT') || 6001);
-  Logger.log(`${pack.name} is running on: ${await app.getUrl()}`);
+  Logger.log(`${pack.description} is running on: ${await app.getUrl()}`);
 }
 bootstrap();

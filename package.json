@@ -11,8 +11,8 @@
     "prebuild": "rimraf packages/*/{tsconfig.tsbuildinfo,lib,dist}",
     "build": "tsc --build",
     "start:dev": "mono-run start:dev --stream 500",
-    "pretest": "yarn build",
-    "test": "jest --config=jest.json",
+    "test": "jest",
+    "test:cov": "jest --coverage",
     "commit": "git-cz"
   },
   "devDependencies": {
@@ -23,6 +23,7 @@
     "cz-lerna-changelog": "^2.0.3",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
+    "jest-stare": "^2.2.2",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "monorepo-run": "^0.4.2",

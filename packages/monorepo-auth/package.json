@@ -1,5 +1,6 @@
 {
   "name": "@monorepo-interface/auth",
+  "module": "auth",
   "version": "0.0.1",
   "description": "权限模块",
   "author": "LiKun<likun@yinhe.ht>",

@@ -34,8 +34,7 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 .vscode
-.env
-env.ini
+
+# 
 schema.gql
-jest
 pm2-config.json
