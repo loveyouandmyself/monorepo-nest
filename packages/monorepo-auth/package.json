@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist lib",
-    "build": "nest build",
+    "build": "node_modules/.bin/tsc -p tsconfig.json",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/src/main"
   },

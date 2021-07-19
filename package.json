@@ -8,8 +8,7 @@
   ],
   "homepage": "",
   "scripts": {
-    "prebuild": "rimraf packages/*/{tsconfig.tsbuildinfo,lib,dist}",
-    "build": "tsc --build",
+    "build": "bash script/build.sh",
     "start:dev": "mono-run start:dev --stream 500",
     "test": "jest",
     "test:cov": "jest --coverage",
