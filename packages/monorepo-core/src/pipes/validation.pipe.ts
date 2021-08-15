@@ -12,7 +12,7 @@ export class ValidationPipe implements PipeTransform {
     if (!metatype || !validateType(metatype)) {
       return value;
     }
-    const object = plainToClass(metatype, value);
+    const object = plainToClass(metatype, value, { excludeExtraneousValues: true });
     const errors = await validate(object);
 
     if (errors.length > 0) {

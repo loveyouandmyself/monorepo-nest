@@ -1,4 +1,5 @@
 export * from './decorators';
+export * from './configs';
 export * from './dto';
 export * from './entities';
 export * from './exception';
@@ -7,5 +8,7 @@ export * from './interceptors';
 export * from './metadata';
 export * from './middleware';
 export * from './pipes';
+export * from './scalars';
+export * from './schemas';
 export * from './swagger';
 export * from './utils';

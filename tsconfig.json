@@ -2,7 +2,7 @@
   "exclude": ["node_modules", "dist", "lib", ".eslintrc.js", "**/*.test*", "**/*.spec*"], // exclude表示要排除的、不编译的文件
   "files": [], // 包含指定文件的相对或绝对路径，编译器在编译的时候只会编译包含在files中列出的文件
   "compilerOptions": {
-    "skipLibCheck": false, // 对库定义文件跳过类型检查
+    "skipLibCheck": true, // 对库定义文件跳过类型检查
     "target": "es2017", // 生成js的版本
     "module": "commonjs", // 模块化标准
     "jsx": "react", // jsx 的编译方式

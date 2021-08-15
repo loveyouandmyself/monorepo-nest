@@ -22,7 +22,7 @@ export class MyCacheInterceptor extends CacheInterceptor {
     const info = gqlContext.getInfo();
     const parentType = info.parentType.name;
     if (parentType === 'Query') {
-      return gqlContext.getArgs();
+      return JSON.stringify(gqlContext.getArgs());
     }
     return undefined;
   }

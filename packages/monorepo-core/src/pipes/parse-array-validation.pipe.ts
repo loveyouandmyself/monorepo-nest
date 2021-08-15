@@ -17,11 +17,11 @@ export class ParseArrayValidationPipe<T> implements PipeTransform {
 
   async transform(value: T): Promise<any> {
     const responseErrors: { field: string; value: any; index: any; errors: any[]; }[] = [];
+    const result: ClassType<T>[] = [];
     if (isArray(value)) {
       const promiseList = Array.from(value).map(async (valid, index) => {
-        const object: any = plainToClass(this.type, valid);
+        const object: any = plainToClass(this.type, valid, { excludeExtraneousValues: true });
         const errors = await validate(object);
-  
         if (errors.length > 0) {
           errors.forEach(err => {
             responseErrors.push({
@@ -32,6 +32,7 @@ export class ParseArrayValidationPipe<T> implements PipeTransform {
             });
           });
         }
+        result.push(object);
       });
       await Promise.all(promiseList);
     }
@@ -39,6 +40,6 @@ export class ParseArrayValidationPipe<T> implements PipeTransform {
       const errMsg = isProduction() ? 'Validation failed' : responseErrors;
       throw new RestfulException(errMsg, 400);
     }
-    return value;
+    return result;
   }
 }

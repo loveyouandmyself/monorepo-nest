@@ -11,7 +11,7 @@ export class TransformInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map(data => {
         if (context.getType().toString() === 'graphql') return data;
-        const logFormat = `Request original url: ${req.originalUrl} Method: ${req.method} IP: ${req.clientIp} Response data: ok`;
+        const logFormat = `Request original url: ${req.originalUrl} Method: ${req.method} IP: ${req.ip} Response data: ok`;
         Logger.info(logFormat);
         return {
           data,

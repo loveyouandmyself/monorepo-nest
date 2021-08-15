@@ -2,7 +2,7 @@
   "name": "monorepo-interface",
   "private": true,
   "license": "UNLICENSED",
-  "useWorkspaces": true,
+  "useWorkspaces": false,
   "workspaces": [
     "packages/*"
   ],

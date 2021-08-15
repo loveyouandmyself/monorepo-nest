@@ -38,3 +38,5 @@ lerna-debug.log*
 # 
 schema.gql
 pm2-config.json
+env.ini
+migration/*
