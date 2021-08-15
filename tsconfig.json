@@ -1,0 +1,47 @@
+{
+  "exclude": ["node_modules", "dist", "lib", ".eslintrc.js", "**/*.test*", "**/*.spec*"], // exclude表示要排除的、不编译的文件
+  "files": [], // 包含指定文件的相对或绝对路径，编译器在编译的时候只会编译包含在files中列出的文件
+  "compilerOptions": {
+    "skipLibCheck": true, // 对库定义文件跳过类型检查
+    "target": "es2017", // 生成js的版本
+    "module": "commonjs", // 模块化标准
+    "jsx": "react", // jsx 的编译方式
+    "rootDir": ".", // 定义输入文件根目录
+    "outDir": "dist", // 编译输出文件夹
+    "downlevelIteration": true, // 当 target 为 ES5 或 ES3 时，提供对 for..of，解构等的支持
+    "strict": true, // 所有的语法都会进行严格的检查
+    "removeComments": true, // 将编译后的文件注释删掉
+    "noUnusedLocals": false, // 检查是否有定义了但是没有使用的变量
+    "noUnusedParameters": false, // 检查是否有在函数体中没有使用的参数
+    "noImplicitReturns": true, // 检查函数是否有返回值
+    "noFallthroughCasesInSwitch": true, // switch 语句中，每个 case 都要有 break
+    "moduleResolution": "node", // 指定模块解析方式，["classic" : "node"]
+    "allowSyntheticDefaultImports": true, // 允许从没有默认导出的模块中默认导入
+    "esModuleInterop": true, // 可以使用es6的方式导入node.js的方法
+    "forceConsistentCasingInFileNames": true, // 不允许不同变量来代表同一文件
+    "baseUrl": "./", // 设置解析非相对模块名称的基本目录
+    "paths": { // 与 baseUrl 一同定义模块查找的路径
+      "@monorepo-interface/*": ["packages/*/src"]
+    },
+    "composite": true, // 是否编译构建引用项目
+    "declaration": true, // 编译每个ts文件之后会生成一个js文件和一个声明文件
+    "declarationMap": true, // 指定是否为声明文件.d.ts生成map文件
+    "sourceMap": true, // 编译时生成.map文件
+    "emitDecoratorMetadata": true, // 为装上去提供元数据支持
+    "experimentalDecorators": true, // 启用实验性的装饰器特性
+    "suppressImplicitAnyIndexErrors": true, // 对缺少索引签名的索引对象报错
+    "resolveJsonModule": true, // 是否允许把json文件当做模块进行解析
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+  },
+  "references": [{ // 一个对象数组，指定要引用的项目
+      "path": "packages/monorepo-auth"
+    },
+    {
+      "path": "packages/monorepo-core"
+    },
+    {
+      "path": "packages/monorepo-school"
+    }
+  ]
+}
