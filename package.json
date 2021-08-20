@@ -11,6 +11,7 @@
     "prebuild": "rimraf packages/*/{tsconfig.tsbuildinfo,lib,dist}",
     "build": "tsc --build",
     "start:dev": "mono-run start:dev --stream 500",
+    "start:pm2": "bash script/pm2.sh",
     "test": "jest",
     "test:cov": "jest --coverage",
     "commit": "git-cz"
