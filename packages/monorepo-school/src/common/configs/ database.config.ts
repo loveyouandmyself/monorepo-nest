@@ -14,7 +14,6 @@ export const databaseConfig: TypeOrmModuleOptions = {
   timezone: getEnvVariable('database.MYSQL_TIMEZONE'),
   synchronize: defaultTo(toBoolean(getEnvVariable('database.MYSQL_SYNCHRONIZE')), false),
   dropSchema: defaultTo(toBoolean(getEnvVariable('database.MYSQL_DROPSCHEMA')), false),
-  // entities: [path.join(__dirname, '../../**/*.entity{.ts,.js}')],
   entities: ['dist/**/*.entity.js'],
   logging: defaultTo(toBoolean(getEnvVariable('database.MYSQL_LOGGING')), false),
   maxQueryExecutionTime: 1000, // 记录查询的执行时间超过1 second的语句
