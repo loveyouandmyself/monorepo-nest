@@ -1,0 +1,1 @@
+export * from './my-from-auth-header-as-bearer-token';

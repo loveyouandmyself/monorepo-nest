@@ -2,9 +2,9 @@ import { getSkip } from '@monorepo-interface/core';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { arrayNotEmpty } from 'class-validator';
-import { pickBy } from 'lodash';
+import { identity, pickBy } from 'lodash';
 import { getConnection, In, Repository } from 'typeorm';
-import { UserAllDto, UserCreateDto, UserListDto, UserUpdateDto } from '../dto';
+import { UserAllDto, UserCreateDto, UserIsExistDto, UserListDto, UserUpdateDto } from '../dto';
 import { UserEntity } from '../entities';
 import { UserListSchema } from '../schemas';
 
@@ -115,4 +115,41 @@ export class UserService {
     });
     return result;
   }
+
+  public async userIsExist(args: UserIsExistDto): Promise<boolean> {
+    const where = {
+      ...pickBy({
+        ...args,
+      }, identity()),
+    };
+    if (where) {
+      const user = await this.userRepo.findOne(where);
+      if (user) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public async findOneByEmail(email: string, select: (keyof UserEntity)[]=[]): Promise<UserEntity> {
+    const result = await this.userRepo.findOne({
+      where: {
+        email,
+        select,
+      },
+    });
+    return result;
+  }
+
+  public async findOneByPhone(phone: string, select: (keyof UserEntity)[]=[]): Promise<UserEntity> {
+    const result = this.userRepo.findOne({
+      where: {
+        phone,
+      },
+      select,
+    });
+    return result;
+  }
+
+
 }

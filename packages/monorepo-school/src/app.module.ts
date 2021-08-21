@@ -1,12 +1,12 @@
 import { PingModule } from './ping/ping.module';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { DateScalar, LoggerMiddleware, MyDataLoaderInterceptor } from '@monorepo-interface/core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { StudentModule } from './student/student.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RedisModule } from 'nestjs-redis';
 import { databaseConfig, redisConfig } from './common/configs';
+import { DateScalar, LoggerMiddleware, MyDataLoaderInterceptor } from '@monorepo-interface/core';
 
 @Module({
   imports: [
@@ -32,6 +32,11 @@ import { databaseConfig, redisConfig } from './common/configs';
       provide: APP_INTERCEPTOR,
       useClass: MyDataLoaderInterceptor,
     },
+    // 鉴权
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: MyAuthGuard,
+    // },
   ],
 })
 export class AppModule implements NestModule {
